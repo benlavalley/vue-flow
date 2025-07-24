@@ -15,6 +15,7 @@ const {
   showInteractive = true,
   fitViewParams,
   position = PanelPosition.BottomLeft,
+  sizeMultiplier = 1,
 } = defineProps<ControlProps>()
 
 const emit = defineEmits<{
@@ -81,7 +82,7 @@ export default {
 
     <template v-if="showZoom">
       <slot name="control-zoom-in">
-        <ControlButton class="vue-flow__controls-zoomin" :disabled="maxZoomReached" @click="onZoomInHandler">
+        <ControlButton class="vue-flow__controls-zoomin" :disabled="maxZoomReached" :size-multiplier="sizeMultiplier" @click="onZoomInHandler">
           <slot name="icon-zoom-in">
             <component :is="PlusIcon" />
           </slot>
@@ -89,7 +90,7 @@ export default {
       </slot>
 
       <slot name="control-zoom-out">
-        <ControlButton class="vue-flow__controls-zoomout" :disabled="minZoomReached" @click="onZoomOutHandler">
+        <ControlButton class="vue-flow__controls-zoomout" :disabled="minZoomReached" :size-multiplier="sizeMultiplier" @click="onZoomOutHandler">
           <slot name="icon-zoom-out">
             <component :is="MinusIcon" />
           </slot>
@@ -99,7 +100,7 @@ export default {
 
     <template v-if="showFitView">
       <slot name="control-fit-view">
-        <ControlButton class="vue-flow__controls-fitview" @click="onFitViewHandler">
+        <ControlButton class="vue-flow__controls-fitview" :size-multiplier="sizeMultiplier" @click="onFitViewHandler">
           <slot name="icon-fit-view">
             <component :is="FitView" />
           </slot>
@@ -109,7 +110,7 @@ export default {
 
     <template v-if="showInteractive">
       <slot name="control-interactive">
-        <ControlButton v-if="showInteractive" class="vue-flow__controls-interactive" @click="onInteractiveChangeHandler">
+        <ControlButton v-if="showInteractive" class="vue-flow__controls-interactive" :size-multiplier="sizeMultiplier" @click="onInteractiveChangeHandler">
           <slot v-if="isInteractive" name="icon-unlock">
             <component :is="Unlock" />
           </slot>

@@ -11,4 +11,6 @@ export interface ControlProps {
   fitViewParams?: FitViewParams
   /** Position of the controls {@link PanelPosition} */
   position?: PanelPositionType | PanelPosition
+  /** Size multiplier for the controls (e.g., 1, 1.5, 2) */
+  sizeMultiplier?: number
 }

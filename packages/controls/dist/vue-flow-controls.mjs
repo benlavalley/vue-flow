@@ -1,23 +1,31 @@
-import { openBlock, createElementBlock, renderSlot, createElementVNode, defineComponent, toRef, createBlock, unref, withCtx, Fragment, createVNode, resolveDynamicComponent, createCommentVNode } from "vue";
+import { defineComponent, openBlock, createElementBlock, normalizeStyle, renderSlot, createElementVNode, toRef, createBlock, unref, withCtx, Fragment, createVNode, resolveDynamicComponent, createCommentVNode } from "vue";
 import { PanelPosition, useVueFlow, Panel } from "@vue-flow/core";
-const _sfc_main$1 = {
+const __default__$1 = {
   name: "ControlButton",
   compatConfig: { MODE: 3 }
 };
-const _export_sfc = (sfc, props) => {
-  const target = sfc.__vccOpts || sfc;
-  for (const [key, val] of props) {
-    target[key] = val;
+const _sfc_main$1 = /* @__PURE__ */ defineComponent({
+  ...__default__$1,
+  props: {
+    sizeMultiplier: { default: 1 }
+  },
+  setup(__props) {
+    return (_ctx, _cache) => {
+      return openBlock(), createElementBlock("button", {
+        class: "vue-flow__controls-button",
+        style: normalizeStyle({
+          padding: `${5 * _ctx.sizeMultiplier}px`,
+          width: `${16 * _ctx.sizeMultiplier}px`,
+          height: `${16 * _ctx.sizeMultiplier}px`,
+          fontSize: `${12 * _ctx.sizeMultiplier}px`,
+          "--icon-size": `${12 * _ctx.sizeMultiplier}px`
+        })
+      }, [
+        renderSlot(_ctx.$slots, "default")
+      ], 4);
+    };
   }
-  return target;
-};
-const _hoisted_1$5 = { class: "vue-flow__controls-button" };
-function _sfc_render(_ctx, _cache, $props, $setup, $data, $options) {
-  return openBlock(), createElementBlock("button", _hoisted_1$5, [
-    renderSlot(_ctx.$slots, "default")
-  ]);
-}
-const ControlButton = /* @__PURE__ */ _export_sfc(_sfc_main$1, [["render", _sfc_render]]);
+});
 const _hoisted_1$4 = {
   xmlns: "http://www.w3.org/2000/svg",
   viewBox: "0 0 32 32"
@@ -89,7 +97,8 @@ const _sfc_main = /* @__PURE__ */ defineComponent({
     showFitView: { type: Boolean, default: true },
     showInteractive: { type: Boolean, default: true },
     fitViewParams: {},
-    position: { default: () => PanelPosition.BottomLeft }
+    position: { default: () => PanelPosition.BottomLeft },
+    sizeMultiplier: { default: 1 }
   },
   emits: ["zoomIn", "zoomOut", "fitView", "interactionChange"],
   setup(__props, { emit }) {
@@ -133,9 +142,10 @@ const _sfc_main = /* @__PURE__ */ defineComponent({
           renderSlot(_ctx.$slots, "top"),
           _ctx.showZoom ? (openBlock(), createElementBlock(Fragment, { key: 0 }, [
             renderSlot(_ctx.$slots, "control-zoom-in", {}, () => [
-              createVNode(ControlButton, {
+              createVNode(_sfc_main$1, {
                 class: "vue-flow__controls-zoomin",
                 disabled: maxZoomReached.value,
+                "size-multiplier": _ctx.sizeMultiplier,
                 onClick: onZoomInHandler
               }, {
                 default: withCtx(() => [
@@ -144,12 +154,13 @@ const _sfc_main = /* @__PURE__ */ defineComponent({
                   ])
                 ]),
                 _: 3
-              }, 8, ["disabled"])
+              }, 8, ["disabled", "size-multiplier"])
             ]),
             renderSlot(_ctx.$slots, "control-zoom-out", {}, () => [
-              createVNode(ControlButton, {
+              createVNode(_sfc_main$1, {
                 class: "vue-flow__controls-zoomout",
                 disabled: minZoomReached.value,
+                "size-multiplier": _ctx.sizeMultiplier,
                 onClick: onZoomOutHandler
               }, {
                 default: withCtx(() => [
@@ -158,12 +169,13 @@ const _sfc_main = /* @__PURE__ */ defineComponent({
                   ])
                 ]),
                 _: 3
-              }, 8, ["disabled"])
+              }, 8, ["disabled", "size-multiplier"])
             ])
           ], 64)) : createCommentVNode("", true),
           _ctx.showFitView ? renderSlot(_ctx.$slots, "control-fit-view", { key: 1 }, () => [
-            createVNode(ControlButton, {
+            createVNode(_sfc_main$1, {
               class: "vue-flow__controls-fitview",
+              "size-multiplier": _ctx.sizeMultiplier,
               onClick: onFitViewHandler
             }, {
               default: withCtx(() => [
@@ -172,12 +184,13 @@ const _sfc_main = /* @__PURE__ */ defineComponent({
                 ])
               ]),
               _: 3
-            })
+            }, 8, ["size-multiplier"])
           ]) : createCommentVNode("", true),
           _ctx.showInteractive ? renderSlot(_ctx.$slots, "control-interactive", { key: 2 }, () => [
-            _ctx.showInteractive ? (openBlock(), createBlock(ControlButton, {
+            _ctx.showInteractive ? (openBlock(), createBlock(_sfc_main$1, {
               key: 0,
               class: "vue-flow__controls-interactive",
+              "size-multiplier": _ctx.sizeMultiplier,
               onClick: onInteractiveChangeHandler
             }, {
               default: withCtx(() => [
@@ -189,7 +202,7 @@ const _sfc_main = /* @__PURE__ */ defineComponent({
                 ]) : createCommentVNode("", true)
               ]),
               _: 3
-            })) : createCommentVNode("", true)
+            }, 8, ["size-multiplier"])) : createCommentVNode("", true)
           ]) : createCommentVNode("", true),
           renderSlot(_ctx.$slots, "default")
         ]),
@@ -199,6 +212,6 @@ const _sfc_main = /* @__PURE__ */ defineComponent({
   }
 });
 export {
-  ControlButton,
+  _sfc_main$1 as ControlButton,
   _sfc_main as Controls
 };

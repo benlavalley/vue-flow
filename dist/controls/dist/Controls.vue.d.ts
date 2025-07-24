@@ -18,6 +18,9 @@ declare const _default: __VLS_WithTemplateSlots<
       position: {
         type: import('vue').PropType<import('@vue-flow/core').PanelPositionType | PanelPosition>
       }
+      sizeMultiplier: {
+        type: import('vue').PropType<number>
+      }
     },
     {},
     unknown,
@@ -49,6 +52,9 @@ declare const _default: __VLS_WithTemplateSlots<
         }
         position: {
           type: import('vue').PropType<import('@vue-flow/core').PanelPositionType | PanelPosition>
+        }
+        sizeMultiplier: {
+          type: import('vue').PropType<number>
         }
       }>
     > & {

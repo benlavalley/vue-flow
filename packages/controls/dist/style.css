@@ -19,8 +19,8 @@
 
 .vue-flow__controls-button svg {
   width: 100%;
-  max-width: 12px;
-  max-height: 12px;
+  max-width: var(--icon-size, 12px);
+  max-height: var(--icon-size, 12px);
 }
 
 .vue-flow__controls-button:hover {
